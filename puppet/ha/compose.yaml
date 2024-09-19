@@ -85,14 +85,26 @@ services:
       - lb
 
 ### Profile: Test #############################################################
-  testing:
-    image: ghcr.io/betadots/pdc:latest
-    container_name: crafty-ha-testing
-    hostname: crafty-ha-testing
-    platform: linux/x86_64
+  # testing:
+  #   image: ghcr.io/betadots/pdc:latest
+  #   container_name: crafty-ha-testing
+  #   hostname: crafty-ha-testing
+  #   platform: linux/x86_64
+  #   volumes:
+  #     - ./puppet.conf:/etc/puppetlabs/puppet/puppet.conf:ro
+  #     - ./agent-ssl:/etc/puppetlabs/puppet/ssl
+  #   restart: always
+  #   profiles:
+  #     - test
+
+  puppet-agent:
+    image: techsk8/puppetagent-debian12:latest
+    hostname: puppet-agent
+    privileged: true
     volumes:
+      - /sys/fs/cgroup/:/sys/fs/cgroup:ro
       - ./puppet.conf:/etc/puppetlabs/puppet/puppet.conf:ro
-      - ./agent-ssl:/etc/puppetlabs/puppet/ssl
+      - agent-ssl:/etc/puppetlabs/puppet/ssl
     restart: always
     profiles:
       - test
