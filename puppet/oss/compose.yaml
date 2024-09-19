@@ -2,6 +2,7 @@
 services:
   puppet:
     image: ghcr.io/voxpupuli/puppetserver:8.6.3-latest
+    pull_policy: always
     hostname: puppet
     environment:
       PUPPETSERVER_HOSTNAME: puppet
@@ -26,6 +27,7 @@ services:
 
   puppetdb:
     image: ghcr.io/voxpupuli/puppetdb:8.7.0-latest
+    pull_policy: always
     hostname: puppetdb
     environment:
       - USE_PUPPETSERVER=true
@@ -46,6 +48,7 @@ services:
 
   postgres:
     image: docker.io/postgres:16-alpine
+    pull_policy: always
     hostname: postgres
     environment:
       - POSTGRES_DB=${POSTGRES_DB:-puppetdb}
@@ -65,6 +68,7 @@ services:
 
   puppetboard:
     image: ghcr.io/voxpupuli/puppetboard:latest
+    pull_policy: always
     hostname: puppetboard
     environment:
       - PUPPETDB_HOST=puppetdb
@@ -87,6 +91,7 @@ services:
 
   hdm:
     image: ghcr.io/betadots/hdm:latest
+    pull_policy: always
     hostname: hdm
     environment:
       - SECRET_KEY_BASE=9dea7603c008dec285e4b231602a00b2
@@ -111,6 +116,7 @@ services:
 
   puppet-agent:
     image: techsk8/puppetagent-debian12:latest
+    pull_policy: always
     hostname: puppet-agent
     privileged: true
     volumes:

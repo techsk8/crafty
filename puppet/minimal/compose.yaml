@@ -2,6 +2,7 @@
 services:
   puppet:
     image: ghcr.io/voxpupuli/puppetserver:8.6.1-latest
+    pull_policy: always
     hostname: puppet
     environment:
       PUPPETSERVER_HOSTNAME: puppet
@@ -16,6 +17,7 @@ services:
 
   puppetdb:
     image: ghcr.io/voxpupuli/puppetdb:8.7.0-latest
+    pull_policy: always
     hostname: puppetdb
     environment:
       USE_PUPPETSERVER: true
@@ -30,6 +32,7 @@ services:
 
   postgres:
     image: docker.io/postgres:16-alpine
+    pull_policy: always
     hostname: postgres
     environment:
       POSTGRES_DB: puppetdb
@@ -46,6 +49,7 @@ services:
 
   puppet-agent:
     image: techsk8/puppetagent-debian12:latest
+    pull_policy: always
     hostname: puppet-agent
     privileged: true
     volumes:

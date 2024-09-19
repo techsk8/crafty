@@ -3,6 +3,7 @@ services:
 ### Profile: Puppet ###########################################################
   ca:
     image: ghcr.io/voxpupuli/puppetserver:8.6.3-latest
+    pull_policy: always
     hostname: puppet-ca
     environment:
       PUPPETSERVER_HOSTNAME: puppet-ca
@@ -19,6 +20,7 @@ services:
 
   compiler-001:
     image: ghcr.io/voxpupuli/puppetserver:8.6.3-latest
+    pull_policy: always
     hostname: compiler-001
     environment:
       PUPPETSERVER_HOSTNAME: compiler-001
@@ -37,6 +39,7 @@ services:
 
   compiler-002:
     image: ghcr.io/voxpupuli/puppetserver:8.6.3-latest
+    pull_policy: always
     hostname: compiler-002
     environment:
       PUPPETSERVER_HOSTNAME: compiler-002
@@ -55,6 +58,7 @@ services:
 
   compiler-003:
     image: ghcr.io/voxpupuli/puppetserver:8.6.3-latest
+    pull_policy: always
     hostname: compiler-003
     environment:
       PUPPETSERVER_HOSTNAME: compiler-003
@@ -74,6 +78,7 @@ services:
 ### Profile: LB ###############################################################
   puppet-lb:
     image: nginx:1.27.1
+    pull_policy: always
     ports:
       - 8140:8140
     hostname: puppet-lb
@@ -99,6 +104,7 @@ services:
 
   puppet-agent:
     image: techsk8/puppetagent-debian12:latest
+    pull_policy: always
     hostname: puppet-agent
     privileged: true
     volumes:
